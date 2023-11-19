@@ -9,12 +9,19 @@ enum ImageQuality: String, Codable {
   case standard = "standard"
   case hd = "hd"
 }
+
+enum ImageSize: String, Codable {
+  case small = "256x256"
+  case medium = "512x512"
+  case large = "1024x1024"
+}
+
 struct ImageGenerationRequest: Codable {
   let model: ImageModel
   let prompt: String
-  let size: String
+  let size: ImageSize
   let quality: ImageQuality
-  let n: Int
+  static let n = 1
 }
 
 struct ImageGenerationResponseData: Decodable {
@@ -32,9 +39,8 @@ func performImageGenerationRequest(prompt: String) async throws -> ImageGenerati
   let imageGenerationRequest = ImageGenerationRequest(
     model: .dalle3,
     prompt: prompt,
-    size: "1024x1024",
-    quality: .standard,
-    n: 1)
+    size: .large,
+    quality: .standard)
 
   let data = try await NetworkManager.sendRequest(
     to: URL(string: "https://api.openai.com/v1/images/generations")!,
