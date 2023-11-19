@@ -14,6 +14,7 @@
 		B77D22D62B0989F300ABADEA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D22D52B0989F300ABADEA /* MainView.swift */; };
 		B77D22D82B09948A00ABADEA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D22D72B09948A00ABADEA /* API.swift */; };
 		B7FBDD702B0A9932001D4784 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FBDD6F2B0A9932001D4784 /* Secrets.swift */; };
+		B7FBDD722B0AB124001D4784 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FBDD712B0AB124001D4784 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B77D22D52B0989F300ABADEA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B77D22D72B09948A00ABADEA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B7FBDD6F2B0A9932001D4784 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		B7FBDD712B0AB124001D4784 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				B75E02F32B09888F00F60AF9 /* Scribble.entitlements */,
 				B75E02F02B09888F00F60AF9 /* Preview Content */,
 				B7FBDD6F2B0A9932001D4784 /* Secrets.swift */,
+				B7FBDD712B0AB124001D4784 /* NetworkManager.swift */,
 			);
 			path = Scribble;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7FBDD722B0AB124001D4784 /* NetworkManager.swift in Sources */,
 				B75E02ED2B09888E00F60AF9 /* GeneratedImage.swift in Sources */,
 				B7FBDD702B0A9932001D4784 /* Secrets.swift in Sources */,
 				B77D22D62B0989F300ABADEA /* MainView.swift in Sources */,
