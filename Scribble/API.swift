@@ -26,17 +26,6 @@ struct NetworkManager {
 
 }
 
-struct Message: Codable {
-  let role: String
-  let content: String
-}
-
-struct ChatRequest: Codable {
-  let model: String
-  let messages: [Message]
-  let temperature: Double
-}
-
 enum ImageModel: String, Codable {
   case dalle2 = "dall-e-2"
   case dalle3 = "dall-e-3"
@@ -54,28 +43,11 @@ struct ImageGenerationRequest: Codable {
   let n: Int
 }
 
-func performChatRequest() async throws -> String {
-
-  let chatRequest = ChatRequest(
-    model: "gpt-3.5-turbo",
-    messages: [
-      Message(role: "user", content: "Write a Hello World in Swift and explain how it works")
-    ],
-    temperature: 0.7)
-
-  let data = try await NetworkManager.sendRequest(
-    to: URL(string: "https://api.openai.com/v1/chat/completions")!,
-    with: chatRequest,
-    apiKey: Secrets.OPENAI_API_KEY)
-
-  return String(decoding: data, as: UTF8.self)
-
-}
-
 struct ImageGenerationResponseData: Decodable {
   let revised_prompt: String
   let url: String
 }
+
 struct ImageGenerationResponse: Decodable {
   let created: Int
   let data: [ImageGenerationResponseData]
