@@ -26,18 +26,6 @@ struct NetworkManager {
 
 }
 
-@propertyWrapper
-struct EnvironmentVariable {
-  let key: String
-  var wrappedValue: String {
-    return ProcessInfo.processInfo.environment[key] ?? ""
-  }
-}
-
-struct Environment {
-  @EnvironmentVariable(key: "OPENAI_API_KEY") static var apiKey: String
-}
-
 struct Message: Codable {
   let role: String
   let content: String
@@ -78,7 +66,7 @@ func performChatRequest() async throws -> String {
   let data = try await NetworkManager.sendRequest(
     to: URL(string: "https://api.openai.com/v1/chat/completions")!,
     with: chatRequest,
-    apiKey: Environment.apiKey)
+    apiKey: Secrets.OPENAI_API_KEY)
 
   return String(decoding: data, as: UTF8.self)
 
@@ -105,7 +93,7 @@ func performImageGenerationRequest(prompt: String) async throws -> ImageGenerati
   let data = try await NetworkManager.sendRequest(
     to: URL(string: "https://api.openai.com/v1/images/generations")!,
     with: imageGenerationRequest,
-    apiKey: Environment.apiKey)
+    apiKey: Secrets.OPENAI_API_KEY)
 
   let jsonDecoder = JSONDecoder()
   let imageGenerationReponse = try jsonDecoder.decode(ImageGenerationResponse.self, from: data)
