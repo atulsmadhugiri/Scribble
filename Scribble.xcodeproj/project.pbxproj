@@ -13,6 +13,7 @@
 		B75E02F22B09888F00F60AF9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75E02F12B09888F00F60AF9 /* Preview Assets.xcassets */; };
 		B77D22D62B0989F300ABADEA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D22D52B0989F300ABADEA /* MainView.swift */; };
 		B77D22D82B09948A00ABADEA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D22D72B09948A00ABADEA /* API.swift */; };
+		B7FBDD702B0A9932001D4784 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FBDD6F2B0A9932001D4784 /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B75E02F32B09888F00F60AF9 /* Scribble.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scribble.entitlements; sourceTree = "<group>"; };
 		B77D22D52B0989F300ABADEA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B77D22D72B09948A00ABADEA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		B7FBDD6F2B0A9932001D4784 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				B75E02EE2B09888F00F60AF9 /* Assets.xcassets */,
 				B75E02F32B09888F00F60AF9 /* Scribble.entitlements */,
 				B75E02F02B09888F00F60AF9 /* Preview Content */,
+				B7FBDD6F2B0A9932001D4784 /* Secrets.swift */,
 			);
 			path = Scribble;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B75E02ED2B09888E00F60AF9 /* GeneratedImage.swift in Sources */,
+				B7FBDD702B0A9932001D4784 /* Secrets.swift in Sources */,
 				B77D22D62B0989F300ABADEA /* MainView.swift in Sources */,
 				B75E02E92B09888E00F60AF9 /* ScribbleApp.swift in Sources */,
 				B77D22D82B09948A00ABADEA /* API.swift in Sources */,
