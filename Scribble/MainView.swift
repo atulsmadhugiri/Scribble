@@ -11,7 +11,6 @@ struct MainView: View {
   @State private var requestInProgess = false
   @State private var haveAnyRequestsBeenMade = false
 
-
   var body: some View {
 
     VStack {
@@ -58,10 +57,11 @@ struct MainView: View {
             }
           }
         }
-
       }
 
       Text(entries.first?.revised_prompt ?? "").font(.caption).padding()
+
+      Divider()
 
       List {
         ForEach(entries.dropFirst(), id: \.created) { entry in
@@ -77,14 +77,13 @@ struct MainView: View {
               }
             }.padding()
 
-            Text("")
-            Text(entry.revised_prompt).font(.footnote).lineLimit(nil)
+            Text(entry.revised_prompt).font(.footnote).lineLimit(5)
           }
 
         }
       }.listStyle(.sidebar)
 
-    }.padding().frame(width: 520, height: 720)
+    }.padding().frame(width: 520, height: 900)
   }
 }
 
