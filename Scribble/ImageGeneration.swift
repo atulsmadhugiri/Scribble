@@ -73,5 +73,8 @@ func performImageGenerationRequest(prompt: String) async throws -> ImageGenerati
   let filePath = temporaryDirectory.appendingPathComponent("\(imageGenerationReponse.created).png")
   try data.write(to: filePath)
 
-  return ImageGeneration(created: imageGenerationReponse.created, revised_prompt: imageGenerationReponse.data.first?.revised_prompt ?? "", url: filePath.absoluteString)
+  return ImageGeneration(
+    created: imageGenerationReponse.created,
+    revised_prompt: imageGenerationReponse.data.first!.revised_prompt,
+    url: filePath.absoluteString)
 }

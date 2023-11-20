@@ -30,7 +30,10 @@ struct MainView: View {
             lastGeneratedImageURL = response.url
             rewrittenPrompt = response.revised_prompt
             if let container = container {
-              let generatedImage = GeneratedImage(created: response.created, revised_prompt: response.revised_prompt, url: response.url)
+              let generatedImage = GeneratedImage(
+                created: response.created,
+                revised_prompt: response.revised_prompt,
+                url: response.url)
               container.mainContext.insert(generatedImage)
             }
             requestInProgess = false
