@@ -30,6 +30,7 @@ struct MainView: View {
                 url: response.url)
               container.mainContext.insert(generatedImage)
             }
+            NSSound(named: "Funk")?.play()
             requestInProgess = false
           } catch {
             requestInProgess = false
