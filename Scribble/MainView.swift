@@ -2,17 +2,15 @@ import SwiftData
 import SwiftUI
 
 struct MainView: View {
-  @Query var entries: [GeneratedImage]
+  @Query(sort: \GeneratedImage.created, order: .reverse) var entries: [GeneratedImage]
 
   var container: ModelContainer? = try? ModelContainer(for: GeneratedImage.self)
 
   @State private var textFieldContent = ""
-  @State private var lastGeneratedImageURL = ""
 
   @State private var requestInProgess = false
   @State private var haveAnyRequestsBeenMade = false
 
-  @State private var rewrittenPrompt = ""
 
   var body: some View {
 
@@ -25,10 +23,7 @@ struct MainView: View {
         haveAnyRequestsBeenMade = true
         Task {
           do {
-            print(entries)
             let response = try await performImageGenerationRequest(prompt: textFieldContent)
-            lastGeneratedImageURL = response.url
-            rewrittenPrompt = response.revised_prompt
             if let container = container {
               let generatedImage = GeneratedImage(
                 created: response.created,
@@ -44,7 +39,7 @@ struct MainView: View {
       }
 
       ZStack {
-        AsyncImage(url: URL(string: lastGeneratedImageURL)) { phase in
+        AsyncImage(url: URL(string: entries.first?.url ?? "")) { phase in
           if let image = phase.image {
             ZStack {
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
@@ -66,10 +61,10 @@ struct MainView: View {
 
       }
 
-      Text(rewrittenPrompt).font(.caption).padding()
+      Text(entries.first?.revised_prompt ?? "").font(.caption).padding()
 
       List {
-        ForEach(entries, id: \.created) { entry in
+        ForEach(entries.dropFirst(), id: \.created) { entry in
           HStack {
             AsyncImage(url: URL(string: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
