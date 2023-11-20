@@ -40,7 +40,13 @@ struct ImageGenerationResponse: Decodable {
   let data: [ImageGenerationResponseData]
 }
 
-func performImageGenerationRequest(prompt: String) async throws -> GeneratedImage {
+struct ImageGeneration {
+  let created: Int
+  let revised_prompt: String
+  let url: String
+}
+
+func performImageGenerationRequest(prompt: String) async throws -> ImageGeneration {
 
   let imageGenerationRequest = ImageGenerationRequest(
     model: .dalle3,
@@ -67,8 +73,5 @@ func performImageGenerationRequest(prompt: String) async throws -> GeneratedImag
   let filePath = temporaryDirectory.appendingPathComponent("\(imageGenerationReponse.created).png")
   try data.write(to: filePath)
 
-  return GeneratedImage(
-    created: imageGenerationReponse.created,
-    revised_prompt: imageGenerationReponse.data.first?.revised_prompt ?? "",
-    url: filePath.absoluteString)
+  return ImageGeneration(created: imageGenerationReponse.created, revised_prompt: imageGenerationReponse.data.first?.revised_prompt ?? "", url: filePath.absoluteString)
 }
