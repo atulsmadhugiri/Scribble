@@ -26,14 +26,10 @@ struct MainView: View {
         Task {
           do {
             let response = try await performImageGenerationRequest(prompt: textFieldContent)
-            lastGeneratedImageURL = response.data.first?.url ?? lastGeneratedImageURL
-            rewrittenPrompt = response.data.first?.revised_prompt ?? ""
+            lastGeneratedImageURL = response.url
+            rewrittenPrompt = response.revised_prompt
             if let container = container {
-              let generatedImage = GeneratedImage(
-                created: response.created,
-                revised_prompt: response.data.first?.revised_prompt ?? "",
-                url: response.data.first?.url ?? "")
-              container.mainContext.insert(generatedImage)
+              container.mainContext.insert(response)
             }
             requestInProgess = false
           } catch {
@@ -70,7 +66,7 @@ struct MainView: View {
       List {
         ForEach(entries, id: \.url) { entry in
           HStack {
-            AsyncImage(url: URL(string: entry.url)!) { image in
+            AsyncImage(url: URL(string: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
                 width: 80, height: 80)
 

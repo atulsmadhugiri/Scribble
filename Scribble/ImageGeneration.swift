@@ -16,17 +16,23 @@ enum ImageSize: String, Codable {
   case large = "1024x1024"
 }
 
+enum ImageResponseFormat: String, Codable {
+  case url = "url"
+  case base64 = "b64_json"
+}
+
 struct ImageGenerationRequest: Codable {
   let model: ImageModel
   let prompt: String
   let size: ImageSize
   let quality: ImageQuality
+  let response_format: ImageResponseFormat
   static let n = 1
 }
 
 struct ImageGenerationResponseData: Decodable {
   let revised_prompt: String
-  let url: String
+  let b64_json: String
 }
 
 struct ImageGenerationResponse: Decodable {
@@ -34,13 +40,15 @@ struct ImageGenerationResponse: Decodable {
   let data: [ImageGenerationResponseData]
 }
 
-func performImageGenerationRequest(prompt: String) async throws -> ImageGenerationResponse {
+func performImageGenerationRequest(prompt: String) async throws -> GeneratedImage {
 
   let imageGenerationRequest = ImageGenerationRequest(
     model: .dalle3,
     prompt: prompt,
     size: .large,
-    quality: .standard)
+    quality: .standard,
+    response_format: .base64
+  )
 
   let data = try await NetworkManager.sendRequest(
     to: URL(string: "https://api.openai.com/v1/images/generations")!,
@@ -49,6 +57,18 @@ func performImageGenerationRequest(prompt: String) async throws -> ImageGenerati
   let jsonDecoder = JSONDecoder()
   let imageGenerationReponse = try jsonDecoder.decode(ImageGenerationResponse.self, from: data)
 
-  return imageGenerationReponse
+  let temporaryDirectory = URL.homeDirectory.appending(
+    path: ".scribble", directoryHint: .isDirectory)
+  guard let data = Data(base64Encoded: imageGenerationReponse.data.first!.b64_json) else {
+    throw NSError()
+  }
 
+  try FileManager().createDirectory(at: temporaryDirectory, withIntermediateDirectories: true)
+  let filePath = temporaryDirectory.appendingPathComponent("\(imageGenerationReponse.created).png")
+  try data.write(to: filePath)
+
+  return GeneratedImage(
+    created: imageGenerationReponse.created,
+    revised_prompt: imageGenerationReponse.data.first?.revised_prompt ?? "",
+    url: filePath.absoluteString)
 }
