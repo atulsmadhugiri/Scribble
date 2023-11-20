@@ -30,12 +30,12 @@ struct ImageGenerationRequest: Codable {
   static let n = 1
 }
 
-struct ImageGenerationResponseData: Decodable {
+struct ImageGenerationResponseData: Codable {
   let revised_prompt: String
   let b64_json: String
 }
 
-struct ImageGenerationResponse: Decodable {
+struct ImageGenerationResponse: Codable {
   let created: Int
   let data: [ImageGenerationResponseData]
 }
