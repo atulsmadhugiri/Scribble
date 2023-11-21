@@ -44,7 +44,36 @@ struct MainView: View {
             ZStack {
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
                 width: 440, height: 440
-              ).blur(radius: requestInProgess ? 10 : 0)
+              ).blur(radius: requestInProgess ? 10 : 0).onDrag {
+                if let firstEntry = entries.first {
+                  let existingURL = URL(string: firstEntry.url)
+                  let fileName = existingURL!.lastPathComponent
+
+                  let temporaryPathString = "\(NSTemporaryDirectory())onDrag/\(fileName)"
+                  let temporaryPath = URL(fileURLWithPath: temporaryPathString)
+
+                  if FileManager.default.fileExists(atPath: temporaryPathString) {
+                    if let provider = NSItemProvider(contentsOf: temporaryPath) {
+                      provider.suggestedName = fileName
+                      return provider
+                    }
+                  }
+
+                  do {
+                    try FileManager().createDirectory(
+                      at: temporaryPath.deletingLastPathComponent(),
+                      withIntermediateDirectories: true)
+                    try FileManager().copyItem(at: existingURL!, to: temporaryPath)
+                    if let provider = NSItemProvider(contentsOf: temporaryPath) {
+                      provider.suggestedName = fileName
+                      return provider
+                    }
+                  } catch {
+                    print("Error creating temporary file in .onDrag: \(error)")
+                  }
+                }
+                return NSItemProvider()
+              }
               if requestInProgess == true {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
               }
@@ -69,7 +98,36 @@ struct MainView: View {
           HStack {
             AsyncImage(url: URL(string: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
-                width: 120, height: 120)
+                width: 120, height: 120
+              ).transition(.opacity.animation(.default)).onDrag {
+
+                let existingURL = URL(string: entry.url)
+                let fileName = existingURL!.lastPathComponent
+
+                let temporaryPathString = "\(NSTemporaryDirectory())onDrag/\(fileName)"
+                let temporaryPath = URL(fileURLWithPath: temporaryPathString)
+
+                if FileManager.default.fileExists(atPath: temporaryPathString) {
+                  if let provider = NSItemProvider(contentsOf: temporaryPath) {
+                    provider.suggestedName = fileName
+                    return provider
+                  }
+                }
+
+                do {
+                  try FileManager().createDirectory(
+                    at: temporaryPath.deletingLastPathComponent(), withIntermediateDirectories: true
+                  )
+                  try FileManager().copyItem(at: existingURL!, to: temporaryPath)
+                  if let provider = NSItemProvider(contentsOf: temporaryPath) {
+                    provider.suggestedName = fileName
+                    return provider
+                  }
+                } catch {
+                  print("Error creating temporary file in .onDrag: \(error)")
+                }
+                return NSItemProvider()
+              }
 
             } placeholder: {
               ZStack {
