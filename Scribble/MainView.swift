@@ -16,7 +16,7 @@ struct MainView: View {
     VStack {
 
       TextField("Prompt", text: $textFieldContent).frame(
-        width: 400
+        width: 440
       ).textFieldStyle(.roundedBorder).onSubmit {
         requestInProgess = true
         haveAnyRequestsBeenMade = true
@@ -43,24 +43,24 @@ struct MainView: View {
           if let image = phase.image {
             ZStack {
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
-                width: 400, height: 400
+                width: 440, height: 440
               ).blur(radius: requestInProgess ? 10 : 0)
               if requestInProgess == true {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
               }
             }
           } else if haveAnyRequestsBeenMade == false {
-            Color.gray.opacity(0.1).cornerRadius(8).frame(width: 400, height: 400)
+            Color.gray.opacity(0.1).cornerRadius(8).frame(width: 440, height: 440)
           } else {
             ZStack {
               ProgressView().progressViewStyle(CircularProgressViewStyle())
-              Color.gray.opacity(0.1).cornerRadius(8).frame(width: 400, height: 400)
+              Color.gray.opacity(0.1).cornerRadius(8).frame(width: 440, height: 440)
             }
           }
         }
       }
 
-      Text(entries.first?.revised_prompt ?? "").font(.caption).padding()
+      Text(entries.first?.revised_prompt ?? "").font(.caption2).padding()
 
       Divider()
 
@@ -69,16 +69,16 @@ struct MainView: View {
           HStack {
             AsyncImage(url: URL(string: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
-                width: 80, height: 80)
+                width: 120, height: 120)
 
             } placeholder: {
               ZStack {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
-                Color.gray.opacity(0.1).cornerRadius(8).frame(width: 80, height: 80)
+                Color.gray.opacity(0.1).cornerRadius(8).frame(width: 120, height: 120)
               }
             }.padding()
 
-            Text(entry.revised_prompt).font(.footnote).lineLimit(5)
+            Text(entry.revised_prompt).font(.footnote).lineLimit(8)
           }
 
         }
