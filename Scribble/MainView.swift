@@ -47,30 +47,7 @@ struct MainView: View {
               ).blur(radius: requestInProgess ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
                   let existingURL = URL(string: firstEntry.url)
-                  let fileName = existingURL!.lastPathComponent
-
-                  let temporaryPathString = "\(NSTemporaryDirectory())onDrag/\(fileName)"
-                  let temporaryPath = URL(fileURLWithPath: temporaryPathString)
-
-                  if FileManager.default.fileExists(atPath: temporaryPathString) {
-                    if let provider = NSItemProvider(contentsOf: temporaryPath) {
-                      provider.suggestedName = fileName
-                      return provider
-                    }
-                  }
-
-                  do {
-                    try FileManager().createDirectory(
-                      at: temporaryPath.deletingLastPathComponent(),
-                      withIntermediateDirectories: true)
-                    try FileManager().copyItem(at: existingURL!, to: temporaryPath)
-                    if let provider = NSItemProvider(contentsOf: temporaryPath) {
-                      provider.suggestedName = fileName
-                      return provider
-                    }
-                  } catch {
-                    print("Error creating temporary file in .onDrag: \(error)")
-                  }
+                  return getItemProvider(for: existingURL!)
                 }
                 return NSItemProvider()
               }
@@ -102,31 +79,7 @@ struct MainView: View {
               ).transition(.opacity.animation(.default)).onDrag {
 
                 let existingURL = URL(string: entry.url)
-                let fileName = existingURL!.lastPathComponent
-
-                let temporaryPathString = "\(NSTemporaryDirectory())onDrag/\(fileName)"
-                let temporaryPath = URL(fileURLWithPath: temporaryPathString)
-
-                if FileManager.default.fileExists(atPath: temporaryPathString) {
-                  if let provider = NSItemProvider(contentsOf: temporaryPath) {
-                    provider.suggestedName = fileName
-                    return provider
-                  }
-                }
-
-                do {
-                  try FileManager().createDirectory(
-                    at: temporaryPath.deletingLastPathComponent(), withIntermediateDirectories: true
-                  )
-                  try FileManager().copyItem(at: existingURL!, to: temporaryPath)
-                  if let provider = NSItemProvider(contentsOf: temporaryPath) {
-                    provider.suggestedName = fileName
-                    return provider
-                  }
-                } catch {
-                  print("Error creating temporary file in .onDrag: \(error)")
-                }
-                return NSItemProvider()
+                return getItemProvider(for: existingURL!)
               }
 
             } placeholder: {
