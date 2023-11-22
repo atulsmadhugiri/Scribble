@@ -1,30 +1,26 @@
 import Foundation
 
-func getItemProvider(for file: URL) -> NSItemProvider {
+enum ScribbleError: Error {
+  case couldNotCreateItemProvider
+}
+
+func getItemProvider(for file: URL) throws -> NSItemProvider {
   let fileName = file.lastPathComponent
+  let temporaryPath = URL(fileURLWithPath: NSTemporaryDirectory())
+    .appendingPathComponent("onDrag")
+    .appendingPathComponent(fileName)
 
-  let temporaryPathString = "\(NSTemporaryDirectory())onDrag/\(fileName)"
-  let temporaryPath: URL = URL(fileURLWithPath: temporaryPathString)
+  try FileManager.default.createDirectory(
+    at: temporaryPath.deletingLastPathComponent(),
+    withIntermediateDirectories: true)
 
-  if FileManager.default.fileExists(atPath: temporaryPathString) {
-    if let provider = NSItemProvider(contentsOf: temporaryPath) {
-      provider.suggestedName = fileName
-      return provider
-    }
-  }
-
-  do {
-    try FileManager.default.createDirectory(
-      at: temporaryPath.deletingLastPathComponent(),
-      withIntermediateDirectories: true)
-
+  if !FileManager.default.fileExists(atPath: temporaryPath.path) {
     try FileManager.default.copyItem(at: file, to: temporaryPath)
-    if let provider = NSItemProvider(contentsOf: temporaryPath) {
-      provider.suggestedName = fileName
-      return provider
-    }
-  } catch {
-    print("Error creating temporary file in .onDrag: \(error)")
   }
-  return NSItemProvider()
+
+  guard let provider = NSItemProvider(contentsOf: temporaryPath) else {
+    throw ScribbleError.couldNotCreateItemProvider
+  }
+  provider.suggestedName = fileName
+  return provider
 }

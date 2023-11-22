@@ -47,7 +47,11 @@ struct MainView: View {
               ).blur(radius: requestInProgess ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
                   let existingURL = URL(string: firstEntry.url)
-                  return getItemProvider(for: existingURL!)
+                  do {
+                    return try getItemProvider(for: existingURL!)
+                  } catch {
+                    print("Unable to get NSItemProvider for existingURL")
+                  }
                 }
                 return NSItemProvider()
               }
@@ -79,7 +83,12 @@ struct MainView: View {
               ).transition(.opacity.animation(.default)).onDrag {
 
                 let existingURL = URL(string: entry.url)
-                return getItemProvider(for: existingURL!)
+                do {
+                  return try getItemProvider(for: existingURL!)
+                } catch {
+                  print("Unable to get NSItemProvider for existingURL")
+                }
+                return NSItemProvider()
               }
 
             } placeholder: {
