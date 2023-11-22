@@ -7,8 +7,8 @@ enum ScribbleError: Error {
 func getItemProvider(for file: URL) throws -> NSItemProvider {
   let fileName = file.lastPathComponent
   let temporaryPath = URL(fileURLWithPath: NSTemporaryDirectory())
-    .appendingPathComponent("onDrag")
-    .appendingPathComponent(fileName)
+    .appending(component: "onDrag")
+    .appending(component: fileName)
 
   try FileManager.default.createDirectory(
     at: temporaryPath.deletingLastPathComponent(),
