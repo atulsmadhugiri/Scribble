@@ -11,6 +11,12 @@ struct MainView: View {
   @State private var requestInProgess = false
   @State private var haveAnyRequestsBeenMade = false
 
+  @State private var searchTerm = ""
+  var filteredEntries: [GeneratedImage] {
+    guard !searchTerm.isEmpty else { return entries }
+    return entries.filter { $0.revised_prompt.localizedCaseInsensitiveContains(searchTerm) }
+  }
+
   var body: some View {
 
     VStack {
@@ -75,7 +81,8 @@ struct MainView: View {
       Divider()
 
       List {
-        ForEach(entries.dropFirst(), id: \.created) { entry in
+        Divider()
+        ForEach(filteredEntries, id: \.created) { entry in
           HStack {
             AsyncImage(url: URL(string: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
@@ -96,13 +103,14 @@ struct MainView: View {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
                 Color.gray.opacity(0.1).cornerRadius(8).frame(width: 120, height: 120)
               }
-            }.padding()
-
+            }
+            Spacer()
             Text(entry.revised_prompt).font(.footnote).lineLimit(8)
           }
-
+          Divider()
         }
       }.listStyle(.sidebar)
+        .searchable(text: $searchTerm, placement: .sidebar, prompt: "Search generations")
 
     }.padding().frame(width: 520, height: 900)
   }
