@@ -22,7 +22,7 @@ struct MainView: View {
     VStack {
 
       TextField("Prompt", text: $textFieldContent).frame(
-        width: 440
+        width: 400
       ).textFieldStyle(.roundedBorder).onSubmit {
         requestInProgess = true
         haveAnyRequestsBeenMade = true
@@ -49,7 +49,7 @@ struct MainView: View {
           if let image = phase.image {
             ZStack {
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
-                width: 440, height: 440
+                width: 400, height: 400
               ).blur(radius: requestInProgess ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
                   let existingURL = URL(string: firstEntry.url)
@@ -66,17 +66,15 @@ struct MainView: View {
               }
             }
           } else if haveAnyRequestsBeenMade == false {
-            Color.gray.opacity(0.1).cornerRadius(8).frame(width: 440, height: 440)
+            Color.gray.opacity(0.1).cornerRadius(8).frame(width: 400, height: 400)
           } else {
             ZStack {
               ProgressView().progressViewStyle(CircularProgressViewStyle())
-              Color.gray.opacity(0.1).cornerRadius(8).frame(width: 440, height: 440)
+              Color.gray.opacity(0.1).cornerRadius(8).frame(width: 400, height: 400)
             }
           }
         }
       }
-
-      Text(entries.first?.revised_prompt ?? "").font(.caption2).padding()
 
       Divider()
 
@@ -86,7 +84,7 @@ struct MainView: View {
           HStack {
             AsyncImage(url: URL(string: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
-                width: 120, height: 120
+                width: 100, height: 100
               ).transition(.opacity.animation(.default)).onDrag {
 
                 let existingURL = URL(string: entry.url)
@@ -101,18 +99,18 @@ struct MainView: View {
             } placeholder: {
               ZStack {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
-                Color.gray.opacity(0.1).cornerRadius(8).frame(width: 120, height: 120)
+                Color.gray.opacity(0.1).cornerRadius(8).frame(width: 100, height: 100)
               }
             }
             Spacer()
-            Text(entry.revised_prompt).font(.footnote).lineLimit(8)
+            Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
           Divider()
         }
       }.listStyle(.sidebar)
         .searchable(text: $searchTerm, placement: .sidebar, prompt: "Search generations")
 
-    }.padding().frame(width: 520, height: 900)
+    }.padding().frame(width: 460, height: 1000)
   }
 }
 
