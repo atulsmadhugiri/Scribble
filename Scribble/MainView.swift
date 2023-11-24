@@ -11,6 +11,9 @@ struct MainView: View {
   @State private var requestInProgess = false
   @State private var haveAnyRequestsBeenMade = false
 
+  @State private var selectedModel: ImageModel = .dalle2
+  @State private var selectedQuality: ImageQuality = .standard
+
   @State private var searchTerm = ""
   var filteredEntries: [GeneratedImage] {
     guard !searchTerm.isEmpty else { return entries }
@@ -28,7 +31,8 @@ struct MainView: View {
         haveAnyRequestsBeenMade = true
         Task {
           do {
-            let response = try await performImageGenerationRequest(prompt: textFieldContent)
+            let response = try await performImageGenerationRequest(
+              prompt: textFieldContent, model: selectedModel, quality: selectedQuality)
             if let container = container {
               let generatedImage = GeneratedImage(
                 created: response.created,
@@ -78,6 +82,18 @@ struct MainView: View {
 
       Divider()
 
+      Picker("", selection: $selectedModel) {
+        Text("DALL·E 2").tag(ImageModel.dalle2)
+        Text("DALL·E 3").tag(ImageModel.dalle3)
+      }.pickerStyle(.segmented).labelsHidden()
+
+      Picker("", selection: $selectedQuality) {
+        Text("Standard").tag(ImageQuality.standard)
+        Text("HD").tag(ImageQuality.hd)
+      }.pickerStyle(.segmented).labelsHidden()
+
+      Divider()
+
       List {
         Divider()
         ForEach(filteredEntries, id: \.created) { entry in
@@ -102,7 +118,6 @@ struct MainView: View {
                 Color.gray.opacity(0.1).cornerRadius(8).frame(width: 100, height: 100)
               }
             }
-            Spacer()
             Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
           Divider()

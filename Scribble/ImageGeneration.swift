@@ -81,6 +81,6 @@ func performImageGenerationRequest(
 
   return ImageGeneration(
     created: imageGenerationReponse.created,
-    revised_prompt: imageGenerationReponse.data.first!.revised_prompt ?? "",
+    revised_prompt: imageGenerationReponse.data.first!.revised_prompt ?? prompt,
     url: filePath.absoluteString)
 }
