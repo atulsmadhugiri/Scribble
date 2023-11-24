@@ -46,13 +46,17 @@ struct ImageGeneration {
   let url: String
 }
 
-func performImageGenerationRequest(prompt: String) async throws -> ImageGeneration {
+func performImageGenerationRequest(
+  prompt: String,
+  model: ImageModel = .dalle3,
+  quality: ImageQuality = .standard
+) async throws -> ImageGeneration {
 
   let imageGenerationRequest = ImageGenerationRequest(
-    model: .dalle3,
+    model: model,
     prompt: prompt,
     size: .large,
-    quality: .standard,
+    quality: quality,
     response_format: .base64
   )
 
