@@ -31,7 +31,7 @@ struct ImageGenerationRequest: Codable {
 }
 
 struct ImageGenerationResponseData: Codable {
-  let revised_prompt: String
+  let revised_prompt: String?
   let b64_json: String
 }
 
@@ -81,6 +81,6 @@ func performImageGenerationRequest(
 
   return ImageGeneration(
     created: imageGenerationReponse.created,
-    revised_prompt: imageGenerationReponse.data.first!.revised_prompt,
+    revised_prompt: imageGenerationReponse.data.first!.revised_prompt ?? "",
     url: filePath.absoluteString)
 }
