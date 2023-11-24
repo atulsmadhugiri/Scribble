@@ -11,8 +11,8 @@ struct MainView: View {
   @State private var requestInProgess = false
   @State private var haveAnyRequestsBeenMade = false
 
-  @State private var selectedModel: ImageModel = .dalle2
-  @State private var selectedQuality: ImageQuality = .standard
+  @State private var selectedModel: ImageModel = .dalle3
+  @State private var selectedQuality: ImageQuality = .hd
 
   @State private var searchTerm = ""
   var filteredEntries: [GeneratedImage] {
