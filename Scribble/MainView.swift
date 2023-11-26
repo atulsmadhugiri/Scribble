@@ -80,7 +80,10 @@ struct MainView: View {
         }
       }
 
-      TimeElapsedPill(timeElapsed: 10)
+      HStack {
+        TimeElapsedPill(timeElapsed: 10)
+        ModelPill(model: .dalle3)
+      }
 
       Divider()
 
