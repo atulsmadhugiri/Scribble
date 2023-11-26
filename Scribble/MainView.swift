@@ -80,6 +80,8 @@ struct MainView: View {
         }
       }
 
+      TimeElapsedPill(timeElapsed: 10)
+
       Divider()
 
       Picker("", selection: $selectedModel) {
