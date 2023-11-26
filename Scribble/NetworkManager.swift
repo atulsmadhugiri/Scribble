@@ -2,7 +2,7 @@ import Foundation
 
 struct NetworkManager {
 
-  static func sendRequest<T: Codable>(to url: URL, with body: T) async throws -> Data {
+  static func sendOpenAIRequest<T: Codable>(to url: URL, with body: T) async throws -> Data {
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")

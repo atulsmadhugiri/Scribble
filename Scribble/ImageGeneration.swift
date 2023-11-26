@@ -60,7 +60,7 @@ func performImageGenerationRequest(
     response_format: .base64
   )
 
-  let data = try await NetworkManager.sendRequest(
+  let data = try await NetworkManager.sendOpenAIRequest(
     to: URL(string: "https://api.openai.com/v1/images/generations")!,
     with: imageGenerationRequest)
 
