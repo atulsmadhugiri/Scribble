@@ -31,13 +31,18 @@ struct MainView: View {
         haveAnyRequestsBeenMade = true
         Task {
           do {
+            let startTime = Date()
             let response = try await performImageGenerationRequest(
               prompt: textFieldContent, model: selectedModel, quality: selectedQuality)
+            let endTime = Date()
+            let timeElapsed = endTime.timeIntervalSince(startTime)
             if let container = container {
               let generatedImage = GeneratedImage(
                 created: response.created,
                 revised_prompt: response.revised_prompt,
-                url: response.url)
+                url: response.url,
+                timeElapsed: timeElapsed
+              )
               container.mainContext.insert(generatedImage)
             }
             NSSound(named: "Funk")?.play()
@@ -81,7 +86,9 @@ struct MainView: View {
       }
 
       HStack {
-        TimeElapsedPill(timeElapsed: 10)
+        if let first = entries.first {
+          TimeElapsedPill(timeElapsed: first.timeElapsed ?? 0.0)
+        }
         ModelPill(model: .dalle3)
       }
 
