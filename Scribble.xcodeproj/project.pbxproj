@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B73122392B1CFDBD00907F83 /* ScribbleMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */; };
+		B731223B2B1CFDBD00907F83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731223A2B1CFDBD00907F83 /* ContentView.swift */; };
+		B731223D2B1CFDBD00907F83 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731223C2B1CFDBD00907F83 /* Item.swift */; };
+		B731223F2B1CFDBE00907F83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B731223E2B1CFDBE00907F83 /* Assets.xcassets */; };
+		B73122422B1CFDBE00907F83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B73122412B1CFDBE00907F83 /* Preview Assets.xcassets */; };
 		B75E02E92B09888E00F60AF9 /* ScribbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75E02E82B09888E00F60AF9 /* ScribbleApp.swift */; };
 		B75E02ED2B09888E00F60AF9 /* GeneratedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75E02EC2B09888E00F60AF9 /* GeneratedImage.swift */; };
 		B75E02EF2B09888F00F60AF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75E02EE2B09888F00F60AF9 /* Assets.xcassets */; };
@@ -21,6 +26,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B73122362B1CFDBD00907F83 /* ScribbleMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScribbleMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleMobileApp.swift; sourceTree = "<group>"; };
+		B731223A2B1CFDBD00907F83 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B731223C2B1CFDBD00907F83 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		B731223E2B1CFDBE00907F83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B73122412B1CFDBE00907F83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B73122432B1CFDBE00907F83 /* ScribbleMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScribbleMobile.entitlements; sourceTree = "<group>"; };
+		B73122442B1CFDBE00907F83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75E02E52B09888E00F60AF9 /* Scribble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scribble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75E02E82B09888E00F60AF9 /* ScribbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleApp.swift; sourceTree = "<group>"; };
 		B75E02EC2B09888E00F60AF9 /* GeneratedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedImage.swift; sourceTree = "<group>"; };
@@ -37,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B73122332B1CFDBD00907F83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B75E02E22B09888E00F60AF9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +67,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B73122372B1CFDBD00907F83 /* ScribbleMobile */ = {
+			isa = PBXGroup;
+			children = (
+				B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */,
+				B731223A2B1CFDBD00907F83 /* ContentView.swift */,
+				B731223C2B1CFDBD00907F83 /* Item.swift */,
+				B731223E2B1CFDBE00907F83 /* Assets.xcassets */,
+				B73122432B1CFDBE00907F83 /* ScribbleMobile.entitlements */,
+				B73122442B1CFDBE00907F83 /* Info.plist */,
+				B73122402B1CFDBE00907F83 /* Preview Content */,
+			);
+			path = ScribbleMobile;
+			sourceTree = "<group>";
+		};
+		B73122402B1CFDBE00907F83 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B73122412B1CFDBE00907F83 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		B75E02DC2B09888E00F60AF9 = {
 			isa = PBXGroup;
 			children = (
 				B75E02E72B09888E00F60AF9 /* Scribble */,
+				B73122372B1CFDBD00907F83 /* ScribbleMobile */,
 				B75E02E62B09888E00F60AF9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				B75E02E52B09888E00F60AF9 /* Scribble.app */,
+				B73122362B1CFDBD00907F83 /* ScribbleMobile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,6 +137,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B73122352B1CFDBD00907F83 /* ScribbleMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B73122472B1CFDBE00907F83 /* Build configuration list for PBXNativeTarget "ScribbleMobile" */;
+			buildPhases = (
+				B73122322B1CFDBD00907F83 /* Sources */,
+				B73122332B1CFDBD00907F83 /* Frameworks */,
+				B73122342B1CFDBD00907F83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScribbleMobile;
+			productName = ScribbleMobile;
+			productReference = B73122362B1CFDBD00907F83 /* ScribbleMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B75E02E42B09888E00F60AF9 /* Scribble */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B75E02F62B09888F00F60AF9 /* Build configuration list for PBXNativeTarget "Scribble" */;
@@ -120,6 +181,9 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					B73122352B1CFDBD00907F83 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					B75E02E42B09888E00F60AF9 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -139,11 +203,21 @@
 			projectRoot = "";
 			targets = (
 				B75E02E42B09888E00F60AF9 /* Scribble */,
+				B73122352B1CFDBD00907F83 /* ScribbleMobile */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B73122342B1CFDBD00907F83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B73122422B1CFDBE00907F83 /* Preview Assets.xcassets in Resources */,
+				B731223F2B1CFDBE00907F83 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B75E02E32B09888E00F60AF9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +230,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B73122322B1CFDBD00907F83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B731223B2B1CFDBD00907F83 /* ContentView.swift in Sources */,
+				B731223D2B1CFDBD00907F83 /* Item.swift in Sources */,
+				B73122392B1CFDBD00907F83 /* ScribbleMobileApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B75E02E12B09888E00F60AF9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +259,73 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		B73122452B1CFDBE00907F83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScribbleMobile/ScribbleMobile.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ScribbleMobile/Preview Content\"";
+				DEVELOPMENT_TEAM = HM6Y2RQS2R;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScribbleMobile/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atul.ScribbleMobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B73122462B1CFDBE00907F83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScribbleMobile/ScribbleMobile.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ScribbleMobile/Preview Content\"";
+				DEVELOPMENT_TEAM = HM6Y2RQS2R;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScribbleMobile/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = atul.ScribbleMobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B75E02F42B09888F00F60AF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -356,6 +507,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B73122472B1CFDBE00907F83 /* Build configuration list for PBXNativeTarget "ScribbleMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B73122452B1CFDBE00907F83 /* Debug */,
+				B73122462B1CFDBE00907F83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B75E02E02B09888E00F60AF9 /* Build configuration list for PBXProject "Scribble" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
