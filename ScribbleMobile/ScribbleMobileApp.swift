@@ -3,14 +3,9 @@ import SwiftUI
 
 @main
 struct ScribbleMobileApp: App {
-  var sharedModelContainer: ModelContainer = {
-    let schema = Schema([
-      Item.self
-    ])
-    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+  var modelContainer = {
     do {
-      return try ModelContainer(for: schema, configurations: [modelConfiguration])
+      return try ModelContainer(for: GeneratedImage.self)
     } catch {
       fatalError("Could not create ModelContainer: \(error)")
     }
@@ -18,8 +13,8 @@ struct ScribbleMobileApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      MainView()
     }
-    .modelContainer(sharedModelContainer)
+    .modelContainer(modelContainer)
   }
 }

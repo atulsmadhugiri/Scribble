@@ -5,7 +5,7 @@ struct TimeElapsedPill: View {
   var body: some View {
     ZStack {
       RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-        .frame(width: 90, height: 24)
+        .frame(width: 120, height: 24)
         .foregroundColor(.primary)
       HStack {
         Image(systemName: "stopwatch")

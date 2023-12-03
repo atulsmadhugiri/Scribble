@@ -23,38 +23,6 @@ struct MainView: View {
   var body: some View {
 
     VStack {
-
-      TextField("Prompt", text: $textFieldContent).frame(
-        width: 400
-      ).textFieldStyle(.roundedBorder).onSubmit {
-        requestInProgess = true
-        haveAnyRequestsBeenMade = true
-        Task {
-          do {
-            let startTime = Date()
-            let response = try await performImageGenerationRequest(
-              prompt: textFieldContent, model: selectedModel, quality: selectedQuality)
-            let endTime = Date()
-            let timeElapsed = endTime.timeIntervalSince(startTime)
-            if let container = container {
-              let generatedImage = GeneratedImage(
-                created: response.created,
-                revised_prompt: response.revised_prompt,
-                url: response.url,
-                timeElapsed: timeElapsed
-              )
-              container.mainContext.insert(generatedImage)
-            }
-            #if os(macOS)
-              NSSound(named: "Funk")?.play()
-            #endif
-            requestInProgess = false
-          } catch {
-            requestInProgess = false
-          }
-        }
-      }
-
       ZStack {
         AsyncImage(url: URL(string: entries.first?.url ?? "")) { phase in
           if let image = phase.image {
@@ -87,6 +55,37 @@ struct MainView: View {
         }
       }
 
+      TextField("Prompt", text: $textFieldContent).frame(
+        width: 360
+      ).textFieldStyle(.roundedBorder).onSubmit {
+        requestInProgess = true
+        haveAnyRequestsBeenMade = true
+        Task {
+          do {
+            let startTime = Date()
+            let response = try await performImageGenerationRequest(
+              prompt: textFieldContent, model: selectedModel, quality: selectedQuality)
+            let endTime = Date()
+            let timeElapsed = endTime.timeIntervalSince(startTime)
+            if let container = container {
+              let generatedImage = GeneratedImage(
+                created: response.created,
+                revised_prompt: response.revised_prompt,
+                url: response.url,
+                timeElapsed: timeElapsed
+              )
+              container.mainContext.insert(generatedImage)
+            }
+            #if os(macOS)
+              NSSound(named: "Funk")?.play()
+            #endif
+            requestInProgess = false
+          } catch {
+            requestInProgess = false
+          }
+        }
+      }
+
       HStack {
         if let first = entries.first {
           TimeElapsedPill(timeElapsed: first.timeElapsed ?? 0.0)
@@ -109,7 +108,6 @@ struct MainView: View {
       Divider()
 
       List {
-        Divider()
         ForEach(filteredEntries, id: \.created) { entry in
           HStack {
             AsyncImage(url: URL(string: entry.url)) { image in
@@ -134,12 +132,11 @@ struct MainView: View {
             }
             Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
-          Divider()
         }
       }.listStyle(.sidebar)
         .searchable(text: $searchTerm, placement: .sidebar, prompt: "Search generations")
 
-    }.padding().frame(width: 460, height: 1000)
+    }.padding()
   }
 }
 
