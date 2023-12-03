@@ -27,7 +27,7 @@ struct MainView: View {
         AsyncImage(url: URL(string: entries.first?.url ?? "")) { phase in
           if let image = phase.image {
             ZStack {
-              image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
+              image.interpolation(.none).resizable().scaledToFit().frame(
                 width: 400, height: 400
               ).blur(radius: requestInProgess ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
@@ -45,11 +45,11 @@ struct MainView: View {
               }
             }
           } else if haveAnyRequestsBeenMade == false {
-            Color.gray.opacity(0.1).cornerRadius(8).frame(width: 400, height: 400)
+            Color.gray.opacity(0.1).frame(width: 400, height: 400)
           } else {
             ZStack {
               ProgressView().progressViewStyle(CircularProgressViewStyle())
-              Color.gray.opacity(0.1).cornerRadius(8).frame(width: 400, height: 400)
+              Color.gray.opacity(0.1).frame(width: 400, height: 400)
             }
           }
         }
@@ -133,8 +133,7 @@ struct MainView: View {
             Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
         }
-      }.listStyle(.sidebar)
-        .searchable(text: $searchTerm, placement: .sidebar, prompt: "Search generations")
+      }.searchable(text: $searchTerm, placement: .automatic, prompt: "Search generations")
 
     }.padding()
   }
