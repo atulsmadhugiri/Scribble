@@ -27,7 +27,7 @@ struct MainView: View {
         AsyncImage(url: URL(string: entries.first?.url ?? "")) { phase in
           if let image = phase.image {
             ZStack {
-              image.interpolation(.none).resizable().scaledToFit().frame(
+              image.interpolation(.none).resizable().cornerRadius(8.0).scaledToFit().frame(
                 width: 400, height: 400
               ).blur(radius: requestInProgess ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
@@ -45,11 +45,11 @@ struct MainView: View {
               }
             }
           } else if haveAnyRequestsBeenMade == false {
-            Color.gray.opacity(0.1).frame(width: 400, height: 400)
+            Color.gray.opacity(0.1).cornerRadius(8.0).frame(width: 400, height: 400)
           } else {
             ZStack {
               ProgressView().progressViewStyle(CircularProgressViewStyle())
-              Color.gray.opacity(0.1).frame(width: 400, height: 400)
+              Color.gray.opacity(0.1).cornerRadius(8.0).frame(width: 400, height: 400)
             }
           }
         }
@@ -107,33 +107,37 @@ struct MainView: View {
 
       Divider()
 
-      List {
-        ForEach(filteredEntries, id: \.created) { entry in
-          HStack {
-            AsyncImage(url: URL(string: entry.url)) { image in
-              image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
-                width: 100, height: 100
-              ).transition(.opacity.animation(.default)).onDrag {
+      NavigationView {
+        List {
+          ForEach(filteredEntries, id: \.created) { entry in
+            HStack {
+              AsyncImage(url: URL(string: entry.url)) { image in
+                image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
+                  width: 100, height: 100
+                ).transition(.opacity.animation(.default)).onDrag {
 
-                let existingURL = URL(string: entry.url)
-                do {
-                  return try getItemProvider(for: existingURL!)
-                } catch {
-                  print("Unable to get NSItemProvider for existingURL")
+                  let existingURL = URL(string: entry.url)
+                  do {
+                    return try getItemProvider(for: existingURL!)
+                  } catch {
+                    print("Unable to get NSItemProvider for existingURL")
+                  }
+                  return NSItemProvider()
                 }
-                return NSItemProvider()
-              }
 
-            } placeholder: {
-              ZStack {
-                ProgressView().progressViewStyle(CircularProgressViewStyle())
-                Color.gray.opacity(0.1).cornerRadius(8).frame(width: 100, height: 100)
+              } placeholder: {
+                ZStack {
+                  ProgressView().progressViewStyle(CircularProgressViewStyle())
+                  Color.gray.opacity(0.1).cornerRadius(8).frame(width: 100, height: 100)
+                }
               }
+              Text(entry.revised_prompt).font(.footnote).lineLimit(6)
             }
-            Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
-        }
-      }.searchable(text: $searchTerm, placement: .automatic, prompt: "Search generations")
+        }.searchable(text: $searchTerm, placement: .automatic, prompt: "")
+          .listStyle(.plain)
+          .navigationBarTitle("Image Generations", displayMode: .inline)
+      }
 
     }.padding()
   }
