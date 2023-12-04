@@ -8,7 +8,7 @@ struct MainView: View {
 
   @State private var textFieldContent = ""
 
-  @State private var requestInProgess = false
+  @State private var requestInProgress = false
   @State private var haveAnyRequestsBeenMade = false
 
   @State private var selectedModel: ImageModel = .dalle3
@@ -27,7 +27,7 @@ struct MainView: View {
       TextField("Prompt", text: $textFieldContent).frame(
         width: 400
       ).textFieldStyle(.roundedBorder).onSubmit {
-        requestInProgess = true
+        requestInProgress = true
         haveAnyRequestsBeenMade = true
         Task {
           do {
@@ -48,9 +48,9 @@ struct MainView: View {
             #if os(macOS)
               NSSound(named: "Funk")?.play()
             #endif
-            requestInProgess = false
+            requestInProgress = false
           } catch {
-            requestInProgess = false
+            requestInProgress = false
           }
         }
       }
@@ -61,7 +61,7 @@ struct MainView: View {
             ZStack {
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
                 width: 400, height: 400
-              ).blur(radius: requestInProgess ? 10 : 0).onDrag {
+              ).blur(radius: requestInProgress ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
                   let existingURL = URL(string: firstEntry.url)
                   do {
@@ -72,7 +72,7 @@ struct MainView: View {
                 }
                 return NSItemProvider()
               }
-              if requestInProgess == true {
+              if requestInProgress == true {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
               }
             }
