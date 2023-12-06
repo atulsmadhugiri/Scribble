@@ -67,7 +67,7 @@ func performImageGenerationRequest(
   let jsonDecoder = JSONDecoder()
   let imageGenerationReponse = try jsonDecoder.decode(ImageGenerationResponse.self, from: data)
 
-  let temporaryDirectory = URL.homeDirectory.appending(
+  let temporaryDirectory = URL.documentsDirectory.appending(
     path: ".scribble",
     directoryHint: .isDirectory)
 
