@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B73122392B1CFDBD00907F83 /* ScribbleMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */; };
-		B731223B2B1CFDBD00907F83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731223A2B1CFDBD00907F83 /* ContentView.swift */; };
-		B731223D2B1CFDBD00907F83 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B731223C2B1CFDBD00907F83 /* Item.swift */; };
 		B731223F2B1CFDBE00907F83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B731223E2B1CFDBE00907F83 /* Assets.xcassets */; };
 		B73122422B1CFDBE00907F83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B73122412B1CFDBE00907F83 /* Preview Assets.xcassets */; };
 		B73122492B1D016D00907F83 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CDE8542B0D8C6200F5BB7D /* Utils.swift */; };
@@ -36,8 +34,6 @@
 /* Begin PBXFileReference section */
 		B73122362B1CFDBD00907F83 /* ScribbleMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScribbleMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleMobileApp.swift; sourceTree = "<group>"; };
-		B731223A2B1CFDBD00907F83 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B731223C2B1CFDBD00907F83 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B731223E2B1CFDBE00907F83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B73122412B1CFDBE00907F83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B73122432B1CFDBE00907F83 /* ScribbleMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScribbleMobile.entitlements; sourceTree = "<group>"; };
@@ -81,8 +77,6 @@
 			children = (
 				B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */,
 				B73122512B1D038700907F83 /* MainView.swift */,
-				B731223A2B1CFDBD00907F83 /* ContentView.swift */,
-				B731223C2B1CFDBD00907F83 /* Item.swift */,
 				B731223E2B1CFDBE00907F83 /* Assets.xcassets */,
 				B73122432B1CFDBE00907F83 /* ScribbleMobile.entitlements */,
 				B73122442B1CFDBE00907F83 /* Info.plist */,
@@ -248,9 +242,7 @@
 				B731224B2B1D017200907F83 /* NetworkManager.swift in Sources */,
 				B731224F2B1D017C00907F83 /* TimeElapsedPill.swift in Sources */,
 				B731224D2B1D017700907F83 /* GeneratedImage.swift in Sources */,
-				B731223B2B1CFDBD00907F83 /* ContentView.swift in Sources */,
 				B731224A2B1D017000907F83 /* Secrets.swift in Sources */,
-				B731223D2B1CFDBD00907F83 /* Item.swift in Sources */,
 				B73122522B1D038700907F83 /* MainView.swift in Sources */,
 				B73122392B1CFDBD00907F83 /* ScribbleMobileApp.swift in Sources */,
 				B731224C2B1D017400907F83 /* ImageGeneration.swift in Sources */,
