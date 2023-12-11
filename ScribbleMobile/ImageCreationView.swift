@@ -33,17 +33,7 @@ struct ImageCreationView: View {
             ZStack {
               image.interpolation(.none).resizable().cornerRadius(8.0).scaledToFit().frame(
                 width: 400, height: 400
-              ).blur(radius: requestInProgress ? 10 : 0).onDrag {
-                if let firstEntry = entries.first {
-                  let existingURL = URL(string: firstEntry.url)
-                  do {
-                    return try getItemProvider(for: existingURL!)
-                  } catch {
-                    print("Unable to get NSItemProvider for existingURL")
-                  }
-                }
-                return NSItemProvider()
-              }
+              ).blur(radius: requestInProgress ? 10 : 0)
               if requestInProgress == true {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
               }

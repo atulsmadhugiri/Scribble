@@ -18,17 +18,7 @@ struct ImageBrowsingView: View {
             AsyncImage(url: URL.documentsDirectory.appending(component: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
                 width: 100, height: 100
-              ).transition(.opacity.animation(.default)).onDrag {
-
-                let existingURL = URL(string: entry.url)
-                do {
-                  return try getItemProvider(for: existingURL!)
-                } catch {
-                  print("Unable to get NSItemProvider for existingURL")
-                }
-                return NSItemProvider()
-              }
-
+              ).transition(.opacity.animation(.default))
             } placeholder: {
               ZStack {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
