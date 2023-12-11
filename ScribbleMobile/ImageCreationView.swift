@@ -2,6 +2,15 @@ import SwiftData
 import SwiftUI
 
 struct ImageCreationView: View {
+
+  static var generatedImageFetchQuery: FetchDescriptor<GeneratedImage> {
+    var descriptor = FetchDescriptor<GeneratedImage>(sortBy: [
+      SortDescriptor(\.created, order: .reverse)
+    ])
+    descriptor.fetchLimit = 1
+    return descriptor
+  }
+
   @Query(sort: \GeneratedImage.created, order: .reverse) var entries: [GeneratedImage]
 
   var container: ModelContainer? = try? ModelContainer(for: GeneratedImage.self)
@@ -18,7 +27,8 @@ struct ImageCreationView: View {
 
     VStack {
       ZStack {
-        AsyncImage(url: URL(string: entries.first?.url ?? "")) { phase in
+        AsyncImage(url: URL.documentsDirectory.appending(component: entries.first?.url ?? "")) {
+          phase in
           if let image = phase.image {
             ZStack {
               image.interpolation(.none).resizable().cornerRadius(8.0).scaledToFit().frame(
