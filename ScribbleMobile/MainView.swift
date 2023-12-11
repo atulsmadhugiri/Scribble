@@ -109,7 +109,7 @@ struct MainView: View {
 
       NavigationView {
         List {
-          ForEach(filteredEntries, id: \.created) { entry in
+          ForEach(filteredEntries, id: \.id) { entry in
             HStack {
               AsyncImage(url: URL(string: entry.url)) { image in
                 image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
