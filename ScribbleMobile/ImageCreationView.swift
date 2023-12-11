@@ -1,19 +1,18 @@
 import SwiftData
 import SwiftUI
 
-struct ImageCreationView: View {
+var generatedImageFetchQuery: FetchDescriptor<GeneratedImage> {
+  var descriptor = FetchDescriptor<GeneratedImage>(sortBy: [
+    SortDescriptor(\.created, order: .reverse)
+  ])
+  descriptor.fetchLimit = 1
+  return descriptor
+}
 
-  static var generatedImageFetchQuery: FetchDescriptor<GeneratedImage> {
-    var descriptor = FetchDescriptor<GeneratedImage>(sortBy: [
-      SortDescriptor(\.created, order: .reverse)
-    ])
-    descriptor.fetchLimit = 1
-    return descriptor
-  }
+struct ImageCreationView: View {
+  @Environment(\.modelContext) var modelContext
 
   @Query(sort: \GeneratedImage.created, order: .reverse) var entries: [GeneratedImage]
-
-  var container: ModelContainer? = try? ModelContainer(for: GeneratedImage.self)
 
   @State private var textFieldContent = ""
 
@@ -61,18 +60,13 @@ struct ImageCreationView: View {
               prompt: textFieldContent, model: selectedModel, quality: selectedQuality)
             let endTime = Date()
             let timeElapsed = endTime.timeIntervalSince(startTime)
-            if let container = container {
-              let generatedImage = GeneratedImage(
-                created: response.created,
-                revised_prompt: response.revised_prompt,
-                url: response.url,
-                timeElapsed: timeElapsed
-              )
-              container.mainContext.insert(generatedImage)
-            }
-            #if os(macOS)
-              NSSound(named: "Funk")?.play()
-            #endif
+            let generatedImage = GeneratedImage(
+              created: response.created,
+              revised_prompt: response.revised_prompt,
+              url: response.url,
+              timeElapsed: timeElapsed
+            )
+            modelContext.insert(generatedImage)
             requestInProgress = false
           } catch {
             requestInProgress = false

@@ -12,8 +12,8 @@ struct ImageBrowsingView: View {
 
   var body: some View {
     NavigationView {
-      List {
-        ForEach(filteredEntries, id: \.id) { entry in
+
+        List(filteredEntries, id: \.id) { entry in
           HStack {
             AsyncImage(url: URL.documentsDirectory.appending(component: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
@@ -27,8 +27,7 @@ struct ImageBrowsingView: View {
             }
             Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
-        }
-      }.searchable(text: $searchTerm, placement: .automatic, prompt: "")
+        }.searchable(text: $searchTerm, placement: .automatic, prompt: "")
         .listStyle(.plain)
         .navigationBarTitle("Image Generations", displayMode: .inline)
     }
