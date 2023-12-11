@@ -17,7 +17,9 @@
 		B731224D2B1D017700907F83 /* GeneratedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75E02EC2B09888E00F60AF9 /* GeneratedImage.swift */; };
 		B731224F2B1D017C00907F83 /* TimeElapsedPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79CAF2C2B131BCE0029BE1F /* TimeElapsedPill.swift */; };
 		B73122502B1D018000907F83 /* ModelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79CAF2E2B1321B30029BE1F /* ModelPill.swift */; };
-		B73122522B1D038700907F83 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73122512B1D038700907F83 /* MainView.swift */; };
+		B73122522B1D038700907F83 /* ImageCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73122512B1D038700907F83 /* ImageCreationView.swift */; };
+		B741679A2B26D63A00B472AD /* ImageBrowsingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74167992B26D63A00B472AD /* ImageBrowsingView.swift */; };
+		B741679C2B26D67D00B472AD /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B741679B2B26D67D00B472AD /* RootView.swift */; };
 		B75E02E92B09888E00F60AF9 /* ScribbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75E02E82B09888E00F60AF9 /* ScribbleApp.swift */; };
 		B75E02ED2B09888E00F60AF9 /* GeneratedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75E02EC2B09888E00F60AF9 /* GeneratedImage.swift */; };
 		B75E02EF2B09888F00F60AF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75E02EE2B09888F00F60AF9 /* Assets.xcassets */; };
@@ -38,7 +40,9 @@
 		B73122412B1CFDBE00907F83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B73122432B1CFDBE00907F83 /* ScribbleMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScribbleMobile.entitlements; sourceTree = "<group>"; };
 		B73122442B1CFDBE00907F83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B73122512B1D038700907F83 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B73122512B1D038700907F83 /* ImageCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreationView.swift; sourceTree = "<group>"; };
+		B74167992B26D63A00B472AD /* ImageBrowsingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBrowsingView.swift; sourceTree = "<group>"; };
+		B741679B2B26D67D00B472AD /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		B75E02E52B09888E00F60AF9 /* Scribble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scribble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75E02E82B09888E00F60AF9 /* ScribbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScribbleApp.swift; sourceTree = "<group>"; };
 		B75E02EC2B09888E00F60AF9 /* GeneratedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedImage.swift; sourceTree = "<group>"; };
@@ -76,7 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				B73122382B1CFDBD00907F83 /* ScribbleMobileApp.swift */,
-				B73122512B1D038700907F83 /* MainView.swift */,
+				B73122512B1D038700907F83 /* ImageCreationView.swift */,
+				B74167992B26D63A00B472AD /* ImageBrowsingView.swift */,
+				B741679B2B26D67D00B472AD /* RootView.swift */,
 				B731223E2B1CFDBE00907F83 /* Assets.xcassets */,
 				B73122432B1CFDBE00907F83 /* ScribbleMobile.entitlements */,
 				B73122442B1CFDBE00907F83 /* Info.plist */,
@@ -241,12 +247,14 @@
 				B73122502B1D018000907F83 /* ModelPill.swift in Sources */,
 				B731224B2B1D017200907F83 /* NetworkManager.swift in Sources */,
 				B731224F2B1D017C00907F83 /* TimeElapsedPill.swift in Sources */,
+				B741679A2B26D63A00B472AD /* ImageBrowsingView.swift in Sources */,
 				B731224D2B1D017700907F83 /* GeneratedImage.swift in Sources */,
 				B731224A2B1D017000907F83 /* Secrets.swift in Sources */,
-				B73122522B1D038700907F83 /* MainView.swift in Sources */,
+				B73122522B1D038700907F83 /* ImageCreationView.swift in Sources */,
 				B73122392B1CFDBD00907F83 /* ScribbleMobileApp.swift in Sources */,
 				B731224C2B1D017400907F83 /* ImageGeneration.swift in Sources */,
 				B73122492B1D016D00907F83 /* Utils.swift in Sources */,
+				B741679C2B26D67D00B472AD /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

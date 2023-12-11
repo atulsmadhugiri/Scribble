@@ -13,7 +13,7 @@ struct ScribbleMobileApp: App {
 
   var body: some Scene {
     WindowGroup {
-      MainView()
+      RootView()
     }
     .modelContainer(modelContainer)
   }

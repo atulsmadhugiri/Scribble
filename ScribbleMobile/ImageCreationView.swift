@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-struct MainView: View {
+struct ImageCreationView: View {
   @Query(sort: \GeneratedImage.created, order: .reverse) var entries: [GeneratedImage]
 
   var container: ModelContainer? = try? ModelContainer(for: GeneratedImage.self)
@@ -144,5 +144,5 @@ struct MainView: View {
 }
 
 #Preview {
-  MainView()
+  ImageCreationView()
 }
