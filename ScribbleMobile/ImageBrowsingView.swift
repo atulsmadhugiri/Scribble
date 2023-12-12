@@ -27,7 +27,7 @@ struct ImageBrowsingView: View {
             }
             Text(entry.revised_prompt).font(.footnote).lineLimit(6)
           }
-        }.searchable(text: $searchTerm, placement: .automatic, prompt: "")
+        }.searchable(text: $searchTerm, placement: .automatic, prompt: "Search")
         .listStyle(.plain)
         .navigationBarTitle("Image Generations", displayMode: .inline)
     }
