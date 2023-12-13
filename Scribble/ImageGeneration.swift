@@ -67,20 +67,18 @@ func performImageGenerationRequest(
   let jsonDecoder = JSONDecoder()
   let imageGenerationReponse = try jsonDecoder.decode(ImageGenerationResponse.self, from: data)
 
-  let temporaryDirectory = URL.documentsDirectory.appending(
-    path: ".scribble",
-    directoryHint: .isDirectory)
-
   guard let data = Data(base64Encoded: imageGenerationReponse.data.first!.b64_json) else {
     throw NSError()
   }
 
-  try FileManager.default.createDirectory(at: temporaryDirectory, withIntermediateDirectories: true)
-  let filePath = temporaryDirectory.appending(component: "\(imageGenerationReponse.created).png")
+  try FileManager.default.createDirectory(
+    at: URL.documentsDirectory, withIntermediateDirectories: true)
+  let filePath = URL.documentsDirectory.appending(
+    component: "\(imageGenerationReponse.created).png")
   try data.write(to: filePath)
 
   return ImageGeneration(
     created: imageGenerationReponse.created,
     revised_prompt: imageGenerationReponse.data.first!.revised_prompt ?? prompt,
-    url: filePath.absoluteString)
+    url: filePath.lastPathComponent)
 }

@@ -56,7 +56,8 @@ struct MainView: View {
       }
 
       ZStack {
-        AsyncImage(url: URL(string: entries.first?.url ?? "")) { phase in
+        AsyncImage(url: URL.documentsDirectory.appending(component: entries.first?.url ?? "")) {
+          phase in
           if let image = phase.image {
             ZStack {
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
@@ -112,7 +113,7 @@ struct MainView: View {
         Divider()
         ForEach(filteredEntries, id: \.id) { entry in
           HStack {
-            AsyncImage(url: URL(string: entry.url)) { image in
+            AsyncImage(url: URL.documentsDirectory.appending(component: entry.url)) { image in
               image.interpolation(.none).resizable().scaledToFit().cornerRadius(8).frame(
                 width: 100, height: 100
               ).transition(.opacity.animation(.default)).onDrag {
