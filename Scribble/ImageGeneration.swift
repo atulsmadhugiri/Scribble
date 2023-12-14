@@ -74,7 +74,7 @@ func performImageGenerationRequest(
   try FileManager.default.createDirectory(
     at: URL.documentsDirectory, withIntermediateDirectories: true)
   let filePath = URL.documentsDirectory.appending(
-    component: "\(imageGenerationReponse.created).png")
+    component: "\(UUID().uuidString.components(separatedBy: "-")[0]).png")
   try data.write(to: filePath)
 
   return ImageGeneration(
