@@ -64,9 +64,9 @@ struct MainView: View {
                 width: 400, height: 400
               ).blur(radius: requestInProgress ? 10 : 0).onDrag {
                 if let firstEntry = entries.first {
-                  let existingURL = URL(string: firstEntry.url)
+                  let existingURL = URL.documentsDirectory.appending(component: firstEntry.url)
                   do {
-                    return try getItemProvider(for: existingURL!)
+                    return try getItemProvider(for: existingURL)
                   } catch {
                     print("Unable to get NSItemProvider for existingURL")
                   }
@@ -118,9 +118,9 @@ struct MainView: View {
                 width: 100, height: 100
               ).transition(.opacity.animation(.default)).onDrag {
 
-                let existingURL = URL(string: entry.url)
+                let existingURL = URL.documentsDirectory.appending(component: entry.url)
                 do {
-                  return try getItemProvider(for: existingURL!)
+                  return try getItemProvider(for: existingURL)
                 } catch {
                   print("Unable to get NSItemProvider for existingURL")
                 }
