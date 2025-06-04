@@ -3,10 +3,10 @@ import SwiftData
 
 @Model
 final class GeneratedImage: Identifiable {
-  let created: Int = 0
-  let revised_prompt: String = ""
-  let url: String = ""
-  let timeElapsed: Double?
+  var created: Int
+  var revised_prompt: String
+  var url: String
+  var timeElapsed: Double?
 
   init(created: Int, revised_prompt: String, url: String, timeElapsed: Double?) {
     self.created = created
