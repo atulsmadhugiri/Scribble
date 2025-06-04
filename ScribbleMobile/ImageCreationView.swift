@@ -67,7 +67,9 @@ struct ImageCreationView: View {
                 url: response.url,
                 timeElapsed: timeElapsed
               )
-              modelContext.insert(generatedImage)
+              await MainActor.run {
+                modelContext.insert(generatedImage)
+              }
               requestInProgress = false
             } catch {
               requestInProgress = false

@@ -3,8 +3,7 @@ import SwiftUI
 
 struct MainView: View {
   @Query(sort: \GeneratedImage.created, order: .reverse) var entries: [GeneratedImage]
-
-  var container: ModelContainer? = try? ModelContainer(for: GeneratedImage.self)
+  @Environment(\.modelContext) private var modelContext
 
   @State private var textFieldContent = ""
 
@@ -36,14 +35,14 @@ struct MainView: View {
               prompt: textFieldContent, model: selectedModel, quality: selectedQuality)
             let endTime = Date()
             let timeElapsed = endTime.timeIntervalSince(startTime)
-            if let container = container {
-              let generatedImage = GeneratedImage(
-                created: response.created,
-                revised_prompt: response.revised_prompt,
-                url: response.url,
-                timeElapsed: timeElapsed
-              )
-              container.mainContext.insert(generatedImage)
+            let generatedImage = GeneratedImage(
+              created: response.created,
+              revised_prompt: response.revised_prompt,
+              url: response.url,
+              timeElapsed: timeElapsed
+            )
+            await MainActor.run {
+              modelContext.insert(generatedImage)
             }
             #if os(macOS)
               NSSound(named: "Funk")?.play()
